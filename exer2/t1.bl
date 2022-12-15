@@ -1,0 +1,4 @@
+(or t f)
+exec(List(T, F, AND, T, NOT, OR)) //(x&&y)||!x TFT
+exec(List(T, F, NOT, AND, T, NOT, F, AND, OR, NOT)) // A == B T F
+exec(List( T, NOT, T, AND, T, T, NOT, AND, OR)) // A XOR B A = B

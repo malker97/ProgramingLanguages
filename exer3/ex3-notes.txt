@@ -1,0 +1,39 @@
+// Grammar:
+//   Expr -> <num>                  // int literal
+//        |  <id>                   // var
+//        |  (Op Expr Expr)         // binop expr
+//        |  (:= <id> Expr)         // assignment
+//   Op   -> + | - | * | / | %      //arith op
+//        | < | > | ==              // relational op
+//   <num>: integer
+//   <id> : string                  // standard ID string
+
+# 1. Give two concrete examples of side-effecting program in this language.
+(< 1 2) -> 1; (< 2 1) -> 0
+# 2. Do all expression forms in this language potentially have side-effects? Provide a convincing argument, or show some counter examples.
+Not all have side-effects. like operator "==", (== 1 2) and (== 1 1). what ever we swicth the num, the answer stay be Pure
+# 1. Show two concrete examples of binary operation expressions where evaluating expression’s operands in different orders (e.g. left-to-right vs right-to-left) would produce different results.
+A AND !B -> (AND NOT A B) // A: 63 B:64
+A and (B - 1) -> (AND A (NOT N XOR 1)) // its A mod B A:10 B:2
+# 2. For a side-effect-free language, such as ExpLang, does it matter in which order we evaluate operands?
+Yes. It can prevent ambiguity for users.
+# 1. Show how to implement each of the two new expressions, by using the existing ones. Make sure that their semantics are correctly followed. In particular, the left-to-right operand evaluation order needs to be preserved, and each operand should be evaluated only once.
+(<= x y): OR (< 'x' 'y') (== 'x' 'Y')
+(>= x y): OR (> 'x' 'y') (== 'x' 'Y')
+# 2. Did you use both < and > in your implementation of <= and >=? Can you do it with only one of them? (Either < or > is fine.)
+if (<= x y): OR (< 'x' 'y') (== 'x' 'Y'):
+    Only one used ethod: (NOT (> x y))
+# 1. Provide an IR program for (:= x (> y 1)).
+    t1 = y > 1
+    x = t1
+# 2. Can you generalize your solution to handle a generic toy program: (:= x (> E1 E2)), where E1 and E2 are arbitrary unknown expressions? (Hint: You may use pseudo code, e.g. <E1code> to represent IR code for E1.)
+    Stack Push element
+        IF Type(Stack top) == Type(Curr) goto Next line:
+            do Top Opeartion:
+                push result after Opeart
+        Goto IF Line
+    Stack -> := x (> E1 
+    Curr -> E2
+        temp = E1 > E2?
+    Stack -> := x temp
+        x = temp

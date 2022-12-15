@@ -1,0 +1,10 @@
+Hello2.scala
+    STDIO in scala
+    Object and Class
+    How to load and run it
+Qsort.scala
+    review the Quick Sort and bubble Sort
+    learn how to import lib(Scala and Java)
+    Impliment Qsort and BBsort in Scala
+    How to make a recurssion function
+    
